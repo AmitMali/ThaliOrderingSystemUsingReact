@@ -9,8 +9,8 @@ export default function FoodItemCard(props) {
     unit,
     type,
     mandatoryItem,
-    image,
     unitAllowed,
+    thumbnail,
     id,
   } = props.item;
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ export default function FoodItemCard(props) {
         <div className="relative p-2">
           <div className="flex flex-col justify-center  gap-4 text-sm text-white ">
             <img
-              src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.4dpC8yqkOilrECizuWwlpgHaER%26pid%3DApi&f=1&ipt=6f069f82c320539cd977ec92d1ac124bb105e6723ab0f54b674bbbf0efeaa051&ipo=images"
+              src={thumbnail}
               alt="user name"
               title="user name"
               width="128"
