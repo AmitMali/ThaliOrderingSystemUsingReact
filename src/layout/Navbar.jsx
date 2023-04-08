@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 const Navbar = () => {
-  const foodItems = useSelector((state) => state.foodItem.foodItems);
   const foodItemsCount = useSelector((state) => state.foodItem.foodItemsCount);
   const [isToggleOpen, setIsToggleOpen] = useState(false);
   return (
@@ -14,10 +13,9 @@ const Navbar = () => {
             className="flex h-[5.5rem] items-stretch justify-between font-medium text-slate-700"
             role="navigation"
           >
-            {/*      <!-- Brand logo --> */}
             <Link
-              id="WindUI"
-              aria-label="WindUI logo"
+              id="Thali"
+              aria-label="Thali logo"
               aria-current="page"
               className="flex items-center gap-2 whitespace-nowrap py-3 text-lg focus:outline-none lg:flex-1"
               to={"/"}
@@ -86,24 +84,24 @@ const Navbar = () => {
               <li role="none" className="flex items-stretch">
                 <Link
                   role="menuitem"
+                  aria-current="page"
+                  aria-haspopup="false"
+                  tabIndex="0"
+                  className="flex items-center gap-2 py-4 text-amber-500 transition-colors duration-300 hover:text-amber-600 focus:bg-amber-50 focus:outline-none focus-visible:outline-none lg:px-8"
+                  to={"/"}
+                >
+                  <span>Menus</span>
+                </Link>
+              </li>
+              <li role="none" className="flex items-stretch">
+                <Link
+                  role="menuitem"
                   aria-haspopup="false"
                   tabIndex="0"
                   className="flex items-center gap-2 py-4 transition-colors duration-300 hover:text-amber-500 focus:bg-amber-50 focus:outline-none focus-visible:outline-none lg:px-8"
                   to={"/cart"}
                 >
                   <span>Cart</span>
-                </Link>
-              </li>
-              <li role="none" className="flex items-stretch">
-                <Link
-                  role="menuitem"
-                  aria-current="page"
-                  aria-haspopup="false"
-                  tabIndex="0"
-                  className="flex items-center gap-2 py-4 text-amber-500 transition-colors duration-300 hover:text-amber-600 focus:bg-amber-50 focus:outline-none focus-visible:outline-none lg:px-8"
-                  to={"/checkout"}
-                >
-                  <span>Checkout</span>
                 </Link>
               </li>
             </ul>
@@ -133,7 +131,7 @@ const Navbar = () => {
                 </svg>
                 <span className="absolute -top-1.5 -right-1.5 inline-flex items-center justify-center gap-1 rounded-full border-2 border-white bg-pink-500 px-1.5 text-sm text-white">
                   {foodItemsCount}
-                  <span className="sr-only"> new emails </span>
+                  <span className="sr-only"> cart Items </span>
                 </span>
               </Link>
             </div>

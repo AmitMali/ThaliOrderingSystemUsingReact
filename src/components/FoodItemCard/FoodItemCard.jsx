@@ -7,6 +7,17 @@ export default function FoodItemCard(props) {
   const [quantityFullPortion, setQuantityFullPortion] = useState(0);
   const [quantityHalfPortion, setQuantityHalfPortion] = useState(0);
   const dispatch = useDispatch();
+  const {
+    name,
+    price,
+    halfPrice,
+    unit,
+    type,
+    mandatoryItem,
+    unitAllowed,
+    thumbnail,
+    id,
+  } = props.item;
   const getQuantity = (id, portion) => {
     const filteredItem = foodItems.filter(
       (item) => item.id == id && item.portion == portion
@@ -22,7 +33,17 @@ export default function FoodItemCard(props) {
     const portion = e.target.dataset.portion;
     const itemPrice = portion == "full" ? price : halfPrice;
     console.log(portion, id);
-    dispatch(addFoodItem({ name, price: itemPrice, portion, id }));
+    dispatch(
+      addFoodItem({
+        name,
+        price: itemPrice,
+        portion,
+        id,
+        thumbnail,
+        mandatoryItem,
+        type,
+      })
+    );
     if (portion == "full") {
       setQuantityFullPortion(
         (quantityFullPortion) => (quantityFullPortion += 1)
@@ -49,17 +70,6 @@ export default function FoodItemCard(props) {
     }
   };
 
-  const {
-    name,
-    price,
-    halfPrice,
-    unit,
-    type,
-    mandatoryItem,
-    unitAllowed,
-    thumbnail,
-    id,
-  } = props.item;
   useEffect(() => {
     setQuantityFullPortion(getQuantity(id, "full"));
     setQuantityHalfPortion(getQuantity(id, "half"));
@@ -77,12 +87,16 @@ export default function FoodItemCard(props) {
               src={thumbnail}
               alt="user name"
               title="user name"
-              height="88px"
-              width="128px"
-              className=" rounded"
+              className=" w-36 rounded"
             />
             <div className="flex flex-col gap-1 text-black text-center w-full">
               <h2 className="font-bold uppercase text-slate-700 text-lg">
+                {mandatoryItem ? (
+                  <span className="text-red-700 px-2">*</span>
+                ) : (
+                  <></>
+                )}
+
                 {name}
                 <span className=" font-light capitalize "> / {unit}</span>
               </h2>

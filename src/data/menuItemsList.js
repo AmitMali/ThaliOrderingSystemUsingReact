@@ -6,7 +6,7 @@ export const menuItems = [
     price: "15",
     halfPrice: null,
     unit: "unit",
-    mandatoryItem: true,
+    mandatoryItem: false,
     type: "bread",
     unitAllowed: false,
     thumbnail:
@@ -58,7 +58,7 @@ export const menuItems = [
     price: "10",
     halfPrice: null,
     unit: "serving",
-    mandatoryItem: true,
+    mandatoryItem: false,
     type: "extra",
     unitAllowed: false,
     thumbnail:
@@ -71,7 +71,7 @@ export const menuItems = [
     price: "20",
     halfPrice: null,
     unit: "serving",
-    mandatoryItem: true,
+    mandatoryItem: false,
     type: "extra",
     unitAllowed: false,
     thumbnail:
@@ -84,7 +84,7 @@ export const menuItems = [
     price: "60",
     halfPrice: null,
     unit: "plate (2 unit)",
-    mandatoryItem: true,
+    mandatoryItem: false,
     type: "extra",
     unitAllowed: false,
     thumbnail:

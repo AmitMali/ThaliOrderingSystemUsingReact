@@ -11,7 +11,7 @@ const foodItemSlice = createSlice({
     addFoodItem: (state, actions) => {
       const itemToAdd = actions.payload;
       const exitsItem = state.foodItems.find(
-        (item) => item.id === itemToAdd.id
+        (item) => item.id === itemToAdd.id && item.portion === itemToAdd.portion
       );
       if (exitsItem && exitsItem.portion === itemToAdd.portion) {
         exitsItem.quantity++;
@@ -29,15 +29,14 @@ const foodItemSlice = createSlice({
     removeFoodItem: (state, actions) => {
       const itemToRemove = actions.payload;
       const exitsItem = state.foodItems.find(
-        (foodItem) =>
-          itemToRemove.id === foodItem.id &&
-          itemToRemove.portion == foodItem.portion
+        (item) =>
+          item.id === itemToRemove.id && item.portion === itemToRemove.portion
       );
       if (exitsItem && exitsItem.quantity > 1) {
         exitsItem.quantity--;
         exitsItem.totalPrice =
           Number(exitsItem.totalPrice) - Number(itemToRemove.price);
-      } else if (exitsItem && exitsItem.quantity > 0) {
+      } else {
         state.foodItems = state.foodItems.filter(
           (item) => item.id != itemToRemove.id
         );
