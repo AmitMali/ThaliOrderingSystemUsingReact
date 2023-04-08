@@ -4,4 +4,8 @@ export const store = configureStore({
   reducer: {
     foodItem: foodItemReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });

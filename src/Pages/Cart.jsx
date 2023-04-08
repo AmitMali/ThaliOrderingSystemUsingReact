@@ -6,7 +6,9 @@ const Cart = () => {
 
   console.log(foodItems);
   const totalCartPrice = foodItems.reduce((accumulator, current) => {
-    return Number(accumulator) + Number(current.totalPrice);
+    return (
+      Number(accumulator) + Number(current.price) * Number(current.quantity)
+    );
   }, 0);
   return (
     <div>
@@ -14,7 +16,7 @@ const Cart = () => {
       <div className="flex flex-col">
         <table
           className="w-full text-left  rounded sm:border-separate"
-          cellspacing="0"
+          cellSpacing="0"
         >
           <tr>
             <th
@@ -43,27 +45,25 @@ const Cart = () => {
             </th>
           </tr>
           {foodItems &&
-            foodItems.map((foodItem) => {
+            foodItems.map((foodItem, i) => {
               const { name, id, price, totalPrice, quantity, portion } =
                 foodItem;
 
               return (
-                <>
-                  <tr>
-                    <td className="capitalize h-12 px-6 text-sm transition duration-300  text-slate-500 ">
-                      {name}
-                    </td>
-                    <td className="capitalize h-12 px-6 text-sm transition duration-300  text-slate-500 ">
-                      {totalPrice}
-                    </td>
-                    <td className="capitalize h-12 px-6 text-sm transition duration-300  text-slate-500 ">
-                      {quantity}
-                    </td>
-                    <td className="capitalize h-12 px-6 text-sm transition duration-300  text-slate-500 ">
-                      {portion}
-                    </td>
-                  </tr>
-                </>
+                <tr key={i}>
+                  <td className="capitalize h-12 px-6 text-sm transition duration-300  text-slate-500 ">
+                    {name}
+                  </td>
+                  <td className="capitalize h-12 px-6 text-sm transition duration-300  text-slate-500 ">
+                    {price}
+                  </td>
+                  <td className="capitalize h-12 px-6 text-sm transition duration-300  text-slate-500 ">
+                    {quantity}
+                  </td>
+                  <td className="capitalize h-12 px-6 text-sm transition duration-300  text-slate-500 ">
+                    {portion}
+                  </td>
+                </tr>
               );
             })}
           <tr>
@@ -71,7 +71,7 @@ const Cart = () => {
               colSpan={2}
               className="h-12 px-6 text-1xl bg-orange-200  transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 "
             >
-              Total Price - {totalCartPrice && totalCartPrice}
+              Total Price - &#8377; {totalCartPrice && totalCartPrice}
             </th>
           </tr>
         </table>

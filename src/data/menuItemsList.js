@@ -8,7 +8,7 @@ export const menuItems = [
     unit: "unit",
     mandatoryItem: true,
     type: "bread",
-    unitAllowed: true,
+    unitAllowed: false,
     thumbnail:
       "https://raw.githubusercontent.com/AmitMali/ThaliOrderingSystemUsingReact/main/public/images/foodItemsImages/chapati.jpeg",
   },
@@ -23,7 +23,7 @@ export const menuItems = [
     type: "rice",
     unitAllowed: true,
     thumbnail:
-      "https://github.com/AmitMali/ThaliOrderingSystemUsingReact/blob/main/public/images/foodItemsImages/curd.jpeg",
+      "https://raw.githubusercontent.com/AmitMali/ThaliOrderingSystemUsingReact/main/public/images/foodItemsImages/rice.jpeg",
   },
   {
     id: 3,

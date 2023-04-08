@@ -9,23 +9,43 @@ const foodItemSlice = createSlice({
   initialState,
   reducers: {
     addFoodItem: (state, actions) => {
-      const newItem = actions.payload;
-      const exitsItem = state.foodItems.find((item) => item.id === newItem.id);
-      if (exitsItem && exitsItem.portion === newItem.portion) {
+      const itemToAdd = actions.payload;
+      const exitsItem = state.foodItems.find(
+        (item) => item.id === itemToAdd.id
+      );
+      if (exitsItem && exitsItem.portion === itemToAdd.portion) {
         exitsItem.quantity++;
         exitsItem.totalPrice =
-          Number(exitsItem.totalPrice) + Number(newItem.price);
+          Number(exitsItem.totalPrice) + Number(itemToAdd.price);
       } else {
         state.foodItems.push({
-          ...newItem,
+          ...itemToAdd,
           quantity: 1,
-          totalPrice: newItem.price,
+          totalPrice: itemToAdd.price,
         });
         state.foodItemsCount += 1;
+      }
+    },
+    removeFoodItem: (state, actions) => {
+      const itemToRemove = actions.payload;
+      const exitsItem = state.foodItems.find(
+        (foodItem) =>
+          itemToRemove.id === foodItem.id &&
+          itemToRemove.portion == foodItem.portion
+      );
+      if (exitsItem && exitsItem.quantity > 1) {
+        exitsItem.quantity--;
+        exitsItem.totalPrice =
+          Number(exitsItem.totalPrice) - Number(itemToRemove.price);
+      } else if (exitsItem && exitsItem.quantity > 0) {
+        state.foodItems = state.foodItems.filter(
+          (item) => item.id != itemToRemove.id
+        );
+        state.foodItemsCount -= 1;
       }
     },
   },
 });
 
-export const { addFoodItem } = foodItemSlice.actions;
+export const { addFoodItem, removeFoodItem } = foodItemSlice.actions;
 export default foodItemSlice.reducer;

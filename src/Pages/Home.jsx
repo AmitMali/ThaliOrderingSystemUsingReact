@@ -1,19 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import FoodItemCard from "../components/FoodItemCard/FoodItemCard";
-
+import { useSelector } from "react-redux";
 import { menuItems } from "../data/menuItemsList";
 const Home = () => {
+  const cartItems = useSelector((state) => state.foodItem.foodItems);
   return (
     <div>
       <section>
         <div className="container px-6 m-auto">
-          <div className="grid grid-cols-4 gap-6 md:grid-cols-9 lg:grid-cols-12">
+          <div className="flex flex-wrap">
+            {cartItems.map((item, i) => {
+              return (
+                <div key={i} className=" w-96 ">
+                  {item.name}({item.portion}) - qantity {item.quantity}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+      <section>
+        <div className="container px-6 m-auto">
+          <div className="flex flex-wrap">
             {menuItems.map((item, i) => {
               return (
-                <div
-                  key={item.id}
-                  className="lg:col-span-3 md:col-span-3 col-span-2"
-                >
+                <div key={i} className=" w-96 ">
                   <FoodItemCard item={item} />
                 </div>
               );
