@@ -14,14 +14,10 @@ const Checkout = () => {
     }
   }, 0);
   const mandetoryItemsQuantity = cartItems.reduce((accumulator, current) => {
-    {
-      return current.mandatoryItem
-        ? (accumulator += current.quantity)
-        : accumulator + 0;
-    }
+    current.mandatoryItem ? (accumulator += current.quantity) : accumulator + 0;
   }, 0);
 
-  mandetoryItems > 2 || mandetoryItemsQuantity > 2 ? navigate("/") : "";
+  mandetoryItems >= 2 && mandetoryItemsQuantity ? navigate("/") : "";
 };
 
 export default Checkout;
