@@ -32,15 +32,31 @@ const foodItemSlice = createSlice({
         (item) =>
           item.id === itemToRemove.id && item.portion === itemToRemove.portion
       );
+
       if (exitsItem && exitsItem.quantity > 1) {
         exitsItem.quantity--;
         exitsItem.totalPrice =
           Number(exitsItem.totalPrice) - Number(itemToRemove.price);
       } else {
+        // var i = 0;
+        // while (i < state.foodItems.length) {
+        //   //removing items if item id and portion matches with cart items id and portion
+        //   if (
+        //     state.foodItems[i].id === itemToRemove.id &&
+        //     state.foodItems[i].portion == itemToRemove.portion
+        //   ) {
+        //     state.foodItems.splice(i, 1);
+        //   } else {
+        //     ++i;
+        //   }
+        // }
+        //
         state.foodItems = state.foodItems.filter(
-          (item) => item.id != itemToRemove.id
+          (item) =>
+            item.id !== itemToRemove.id && item.portion !== itemToRemove.portion
         );
         state.foodItemsCount -= 1;
+        //
       }
     },
   },

@@ -22,8 +22,7 @@ const Cart = () => {
   }, 0);
   return (
     <div>
-      <div className="py-4">{cartItemsCount} items in cart</div>
-      <div className="flex flex-col">
+      <div className="flex flex-col my-4">
         <table
           className=" mx-auto w-full lg:w-6/12 text-left  rounded sm:border-separate"
           cellSpacing="0"

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 const Navbar = () => {
-  const foodItemsCount = useSelector((state) => state.foodItem.foodItemsCount);
+  const foodItems = useSelector((state) => state.foodItem.foodItems);
   const [isToggleOpen, setIsToggleOpen] = useState(false);
   return (
     <div>
@@ -130,7 +130,7 @@ const Navbar = () => {
                   />
                 </svg>
                 <span className="absolute -top-1.5 -right-1.5 inline-flex items-center justify-center gap-1 rounded-full border-2 border-white bg-pink-500 px-1.5 text-sm text-white">
-                  {foodItemsCount}
+                  {foodItems.length}
                   <span className="sr-only"> cart Items </span>
                 </span>
               </Link>
